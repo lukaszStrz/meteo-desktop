@@ -24,5 +24,9 @@ namespace Meteo_Desktop
         {
             InitializeComponent();
         }
+
+        void setImage(string uri)
+        {
+        }
     }
 }

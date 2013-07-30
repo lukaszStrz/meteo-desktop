@@ -8,5 +8,11 @@
     <Setting Name="mainWindow_height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">430</Value>
     </Setting>
+    <Setting Name="showMainCities" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="showFavorites" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

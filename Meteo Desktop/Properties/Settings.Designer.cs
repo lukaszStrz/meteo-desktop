@@ -46,5 +46,29 @@ namespace Meteo_Desktop.Properties {
                 this["mainWindow_height"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showMainCities {
+            get {
+                return ((bool)(this["showMainCities"]));
+            }
+            set {
+                this["showMainCities"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool showFavorites {
+            get {
+                return ((bool)(this["showFavorites"]));
+            }
+            set {
+                this["showFavorites"] = value;
+            }
+        }
     }
 }

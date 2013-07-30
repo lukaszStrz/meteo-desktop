@@ -1,30 +1,30 @@
 ﻿<Window x:Class="Meteo_Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="419" Width="581">
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Left">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <Label>Główne miasta</Label>
-                    <Button x:Name="meteoBialystok">Białystok</Button>
-                    <Button x:Name="meteoBydgoszcz">Bydgoszcz</Button>
-                    <Button x:Name="meteo">Gdańsk</Button>
-                    <Button x:Name="meteoGorzow">Gorzów Wlkp</Button>
-                    <Button x:Name="meteoKatowice">Katowice</Button>
-                    <Button x:Name="meteoKielce">Kielce</Button>
-                    <Button x:Name="meteoKrakow">Kraków</Button>
-                    <Button x:Name="meteoLublin">Lublin</Button>
-                    <Button x:Name="meteoLodz">Łódź</Button>
-                    <Button x:Name="meteoOlsztyn">Olsztyn</Button>
-                    <Button x:Name="meteoOpole" Content="Opole"/>
-                    <Button x:Name="meteoPoznan">Poznań</Button>
-                    <Button x:Name="meteoRzeszow">Rzeszów</Button>
-                    <Button x:Name="meteoSzczecin">Szczecin</Button>
-                    <Button x:Name="meteoTorun">Toruń</Button>
-                    <Button x:Name="meteoWarszawa">Warszawa</Button>
-                    <Button x:Name="meteoWroclaw">Wrocław</Button>
-                    <Button x:Name="meteoZielonaGora">Zielona Góra</Button>
+                    <Button x:Name="meteoBialystok" Click="meteoBialystok_Click">Białystok</Button>
+                    <Button x:Name="meteoBydgoszcz" Click="meteoBydgoszcz_Click">Bydgoszcz</Button>
+                    <Button x:Name="meteoGdansk" Click="meteoGdansk_Click">Gdańsk</Button>
+                    <Button x:Name="meteoGorzow" Click="meteoGorzow_Click">Gorzów Wlkp</Button>
+                    <Button x:Name="meteoKatowice" Click="meteoKatowice_Click">Katowice</Button>
+                    <Button x:Name="meteoKielce" Click="meteoKielce_Click">Kielce</Button>
+                    <Button x:Name="meteoKrakow" Click="meteoKrakow_Click">Kraków</Button>
+                    <Button x:Name="meteoLublin" Click="meteoLublin_Click">Lublin</Button>
+                    <Button x:Name="meteoLodz" Click="meteoLodz_Click">Łódź</Button>
+                    <Button x:Name="meteoOlsztyn" Click="meteoOlsztyn_Click">Olsztyn</Button>
+                    <Button x:Name="meteoOpole" Content="Opole" Click="meteoOpole_Click"/>
+                    <Button x:Name="meteoPoznan" Click="meteoPoznan_Click">Poznań</Button>
+                    <Button x:Name="meteoRzeszow" Click="meteoRzeszow_Click">Rzeszów</Button>
+                    <Button x:Name="meteoSzczecin" Click="meteoSzczecin_Click">Szczecin</Button>
+                    <Button x:Name="meteoTorun" Click="meteoTorun_Click">Toruń</Button>
+                    <Button x:Name="meteoWarszawa" Click="meteoWarszawa_Click">Warszawa</Button>
+                    <Button x:Name="meteoWroclaw" Click="meteoWroclaw_Click">Wrocław</Button>
+                    <Button x:Name="meteoZielonaGora" Click="meteoZielonaGora_Click">Zielona Góra</Button>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

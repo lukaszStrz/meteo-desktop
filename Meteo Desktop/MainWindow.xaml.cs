@@ -31,13 +31,20 @@ namespace Meteo_Desktop
 
         void setImg(string uri)
         {
-            var img = new MemoryStream(new WebClient().DownloadData(uri));
-
-            var imageSource = new BitmapImage();
-            imageSource.BeginInit();
-            imageSource.StreamSource = img;
-            imageSource.EndInit();
-            imgMeteo.Source = imageSource;
+            try
+            {
+                var img = new MemoryStream(new WebClient().DownloadData(uri));
+                var imageSource = new BitmapImage();
+                imageSource.BeginInit();
+                imageSource.StreamSource = img;
+                imageSource.EndInit();
+                imgMeteo.Source = imageSource;
+            }
+            catch
+            {
+                MessageBox.Show(this, "Sprawdź połączenie internetowe", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
+                imgMeteo.Source = null;
+            }
         }
 
         private void meteoBialystok_Click(object sender, RoutedEventArgs e)

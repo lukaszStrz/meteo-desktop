@@ -1,7 +1,8 @@
 ﻿<Window x:Class="Meteo_Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="419" Width="581">
+        xmlns:properties="clr-namespace:Meteo_Desktop.Properties"
+        Title="Meteo" Height="{Binding Source={x:Static properties:Settings.Default}, Path=mainWindow_height, Mode=TwoWay}" Width="{Binding Source={x:Static properties:Settings.Default}, Path=mainWindow_width, Mode=TwoWay}" Closing="Window_Closing">
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Left">
             <ScrollViewer VerticalScrollBarVisibility="Auto">

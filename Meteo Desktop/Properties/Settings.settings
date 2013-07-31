@@ -2,17 +2,26 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Meteo_Desktop.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="mainWindow_width" Type="System.Double" Scope="User">
+    <Setting Name="Width" Type="System.Double" Scope="User">
       <Value Profile="(Default)">600</Value>
     </Setting>
-    <Setting Name="mainWindow_height" Type="System.Double" Scope="User">
+    <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">430</Value>
     </Setting>
-    <Setting Name="showMainCities" Type="System.Boolean" Scope="User">
+    <Setting Name="MainCities" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="showFavorites" Type="System.Boolean" Scope="User">
+    <Setting Name="Favorites" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Top" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Left" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="State" Type="System.Windows.WindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
     </Setting>
   </Settings>
 </SettingsFile>

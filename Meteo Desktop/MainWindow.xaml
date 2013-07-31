@@ -3,16 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:properties="clr-namespace:Meteo_Desktop.Properties"
         xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
-        Title="Meteo" Height="443" Width="597" Closing="Window_Closing" Icon="Resources/weather_128x128_32.ico">
+        Height="{Binding Source={x:Static properties:Settings.Default}, Path=Height, Mode=TwoWay}" 
+        Width="{Binding Source={x:Static properties:Settings.Default}, Path=Width, Mode=TwoWay}"
+        Top="{Binding Source={x:Static properties:Settings.Default}, Path=Top, Mode=TwoWay}"
+        Left="{Binding Source={x:Static properties:Settings.Default}, Path=Left, Mode=TwoWay}"
+        WindowState="{Binding Source={x:Static properties:Settings.Default}, Path=State, Mode=TwoWay}"
+        Title="Meteo"
+        Closing="Window_Closing"
+        Icon="Resources/weather_128x128_32.ico">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem x:Name="cmdMap" Header="Mapa"/>
             <MenuItem Header="Widok">
-                <MenuItem Header="Główne miasta" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=showMainCities, Mode=TwoWay}"/>
-                <MenuItem Header="Ulubione" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=showFaworites, Mode=TwoWay}"/>
+                <MenuItem Header="Główne miasta" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=MainCities, Mode=TwoWay}"/>
+                <MenuItem Header="Ulubione" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=Favorites, Mode=TwoWay}"/>
             </MenuItem>
         </Menu>
-        <Grid DockPanel.Dock="Left" Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=showMainCities, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+        <Grid DockPanel.Dock="Left" Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=MainCities, Mode=OneWay, Converter={StaticResource BoolToVis}}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <Label>Główne miasta</Label>

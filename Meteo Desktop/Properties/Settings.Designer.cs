@@ -26,48 +26,84 @@ namespace Meteo_Desktop.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("600")]
-        public double mainWindow_width {
+        public double Width {
             get {
-                return ((double)(this["mainWindow_width"]));
+                return ((double)(this["Width"]));
             }
             set {
-                this["mainWindow_width"] = value;
+                this["Width"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("430")]
-        public double mainWindow_height {
+        public double Height {
             get {
-                return ((double)(this["mainWindow_height"]));
+                return ((double)(this["Height"]));
             }
             set {
-                this["mainWindow_height"] = value;
+                this["Height"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool showMainCities {
+        public bool MainCities {
             get {
-                return ((bool)(this["showMainCities"]));
+                return ((bool)(this["MainCities"]));
             }
             set {
-                this["showMainCities"] = value;
+                this["MainCities"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool showFavorites {
+        public bool Favorites {
             get {
-                return ((bool)(this["showFavorites"]));
+                return ((bool)(this["Favorites"]));
             }
             set {
-                this["showFavorites"] = value;
+                this["Favorites"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double Top {
+            get {
+                return ((double)(this["Top"]));
+            }
+            set {
+                this["Top"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double Left {
+            get {
+                return ((double)(this["Left"]));
+            }
+            set {
+                this["Left"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.WindowState State {
+            get {
+                return ((global::System.Windows.WindowState)(this["State"]));
+            }
+            set {
+                this["State"] = value;
             }
         }
     }

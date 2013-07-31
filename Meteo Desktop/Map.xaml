@@ -1,0 +1,13 @@
+﻿<Window x:Class="Meteo_Desktop.Map"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        Title="Map" Height="500" Width="500" ShowInTaskbar="False" Icon="Resources/weather_128x128_32.ico" WindowStartupLocation="CenterOwner">
+    <DockPanel LastChildFill="True">
+        <StatusBar DockPanel.Dock="Bottom">
+            <TextBlock Text="Współrzędne:"/>
+            <TextBlock x:Name="location"/>
+        </StatusBar>
+        <m:Map x:Name="myMap" CredentialsProvider="AswP_ZFfESf_jmdZ5aj7SFKWmRiEiXgpoiw7WikZvLbCsM37468x_l8uMFm15Bmy" MouseDoubleClick="myMap_MouseDoubleClick"/>
+    </DockPanel>
+</Window>

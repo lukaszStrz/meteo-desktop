@@ -393,5 +393,12 @@ namespace Meteo_Desktop
         {
             Properties.Settings.Default.Save();
         }
+
+        private void cmdMap_Click(object sender, RoutedEventArgs e)
+        {
+            var map = new Map();
+            map.Owner = this;
+            map.ShowDialog();
+        }
     }
 }

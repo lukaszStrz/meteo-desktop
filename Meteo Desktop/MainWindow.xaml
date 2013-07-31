@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:properties="clr-namespace:Meteo_Desktop.Properties"
         xmlns:zoom="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
-        Title="Meteo" Height="{Binding Source={x:Static properties:Settings.Default}, Path=mainWindow_height, Mode=TwoWay}" Width="{Binding Source={x:Static properties:Settings.Default}, Path=mainWindow_width, Mode=TwoWay}" Closing="Window_Closing">
+        Title="Meteo" Height="443" Width="597" Closing="Window_Closing" Icon="Resources/weather_128x128_32.ico">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem x:Name="cmdMap" Header="Mapa"/>

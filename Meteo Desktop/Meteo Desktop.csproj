@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="libs\Meteo Lib.dll" />
+    <Resource Include="Resources\weather_128x128_32.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

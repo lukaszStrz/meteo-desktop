@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -11,6 +12,8 @@ namespace Meteo_Desktop
     public partial class MainWindow : Window
     {
         Meteo_Lib.Meteo meteo = new Meteo_Lib.Meteo();
+
+        bool loading = false;
 
         public MainWindow()
         {
@@ -26,10 +29,25 @@ namespace Meteo_Desktop
             imgMeteo.Source = imageSource;
         }
 
+        private void Loading()
+        {
+            if (!loading)
+            {
+                this.Cursor = System.Windows.Input.Cursors.Wait;
+                loading = true;
+            }
+            else
+            {
+                this.Cursor = System.Windows.Input.Cursors.Arrow;
+                loading = false;
+            }
+        }
+
         #region Main Cities
 
         private async void meteoBialystok_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.BialystokUM();
@@ -40,10 +58,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoBydgoszcz_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.BydgoszczUM();
@@ -54,10 +77,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoGdansk_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.GdanskUM();
@@ -68,10 +96,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoGorzow_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.GorzowUM();
@@ -82,10 +115,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoKatowice_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.KatowiceUM();
@@ -96,10 +134,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoKielce_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.KielceUM();
@@ -110,10 +153,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoKrakow_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.KrakowUM();
@@ -124,10 +172,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoLublin_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.LublinUM();
@@ -138,10 +191,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoLodz_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.LodzUM();
@@ -152,10 +210,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoOlsztyn_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.OlsztynUM();
@@ -166,10 +229,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoOpole_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.OpoleUM();
@@ -180,10 +248,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoPoznan_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.PoznanUM();
@@ -194,10 +267,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoRzeszow_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.RzeszowUM();
@@ -208,10 +286,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoSzczecin_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.SzczecinUM();
@@ -222,10 +305,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoTorun_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.TorunUM();
@@ -236,10 +324,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoWarszawa_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.WarszawaUM();
@@ -250,10 +343,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoWroclaw_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.WroclawUM();
@@ -264,10 +362,15 @@ namespace Meteo_Desktop
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            finally
+            {
+                Loading();
+            }
         }
 
         private async void meteoZielonaGora_Click(object sender, RoutedEventArgs e)
         {
+            Loading();
             try
             {
                 var stream = await meteo.ZielonaGoraUM();
@@ -277,6 +380,10 @@ namespace Meteo_Desktop
             catch
             {
                 MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                Loading();
             }
         }
 

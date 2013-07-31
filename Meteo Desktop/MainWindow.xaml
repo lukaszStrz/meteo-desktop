@@ -39,7 +39,7 @@
         </Grid>
         <StackPanel DockPanel.Dock="Right">
         </StackPanel>
-        <zoom:ZoomControl>
+        <zoom:ZoomControl x:Name="imgZoomControl">
             <Image x:Name="imgMeteo"/>
         </zoom:ZoomControl>
     </DockPanel>

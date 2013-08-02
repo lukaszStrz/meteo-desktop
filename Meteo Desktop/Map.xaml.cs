@@ -25,6 +25,7 @@ namespace Meteo_Desktop
         public Map()
         {
             InitializeComponent();
+            gridButtons.Background = status.Background;
         }
 
         private void myMap_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -50,6 +51,13 @@ namespace Meteo_Desktop
             myMap.Children.Add(pin);
 
             location.Text = pinLocation.ToString();
+
+            cmdOk.IsEnabled = true;
+        }
+
+        private void cmdOk_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }

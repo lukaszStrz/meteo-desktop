@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Net;
+﻿using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,8 +15,6 @@ namespace Meteo_Desktop
 
         Meteo_Lib.Coordinates currentCoordinates;
 
-        bool loading = false;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -29,11 +25,13 @@ namespace Meteo_Desktop
 
         private void LoadFavs()
         {
+            Loading(true);
             listFavs.Items.Clear();
             foreach (var item in Properties.Settings.Default.favs.Keys)
             {
                 listFavs.Items.Add(new Fav((string)item, Properties.Settings.Default.favs[(string)item]));
             }
+            Loading(false);
         }
 
         private void SetImage(MemoryStream ms)
@@ -45,17 +43,15 @@ namespace Meteo_Desktop
             imgMeteo.Source = imageSource;
         }
 
-        private void Loading()
+        private void Loading(bool loading)
         {
-            if (!loading)
+            if (loading)
             {
                 this.Cursor = System.Windows.Input.Cursors.Wait;
-                loading = true;
             }
             else
             {
                 this.Cursor = System.Windows.Input.Cursors.Arrow;
-                loading = false;
             }
         }
 
@@ -63,7 +59,7 @@ namespace Meteo_Desktop
 
         private async void meteoBialystok_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.BialystokUM();
@@ -77,13 +73,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoBydgoszcz_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.BydgoszczUM();
@@ -97,13 +93,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoGdansk_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.GdanskUM();
@@ -117,13 +113,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoGorzow_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.GorzowUM();
@@ -137,13 +133,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoKatowice_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.KatowiceUM();
@@ -157,13 +153,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoKielce_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.KielceUM();
@@ -177,13 +173,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoKrakow_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.KrakowUM();
@@ -197,13 +193,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoLublin_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.LublinUM();
@@ -217,13 +213,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoLodz_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.LodzUM();
@@ -237,13 +233,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoOlsztyn_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.OlsztynUM();
@@ -257,13 +253,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoOpole_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.OpoleUM();
@@ -277,13 +273,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoPoznan_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.PoznanUM();
@@ -297,13 +293,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoRzeszow_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.RzeszowUM();
@@ -317,13 +313,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoSzczecin_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.SzczecinUM();
@@ -337,13 +333,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoTorun_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.TorunUM();
@@ -357,13 +353,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoWarszawa_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.WarszawaUM();
@@ -377,13 +373,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoWroclaw_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.WroclawUM();
@@ -397,13 +393,13 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
         private async void meteoZielonaGora_Click(object sender, RoutedEventArgs e)
         {
-            Loading();
+            Loading(true);
             try
             {
                 var stream = await meteo.ZielonaGoraUM();
@@ -417,7 +413,7 @@ namespace Meteo_Desktop
             }
             finally
             {
-                Loading();
+                Loading(false);
             }
         }
 
@@ -469,14 +465,14 @@ namespace Meteo_Desktop
         {
             if (listFavs.SelectedItem != null)
             {
-                Loading();
+                Loading(true);
                 var item = (Fav)listFavs.SelectedItem;
                 currentCoordinates = item.Coord;
                 var img = await meteo.UM(currentCoordinates);
                 SetImage(img);
                 cmdSave.IsEnabled = false;
                 this.Title = "Meteo - " + item.Name + " (UM)";
-                Loading();
+                Loading(false);
             }
         }
     }

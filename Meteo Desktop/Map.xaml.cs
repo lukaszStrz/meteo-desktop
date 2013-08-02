@@ -20,7 +20,7 @@ namespace Meteo_Desktop
     /// </summary>
     public partial class Map : Window
     {
-        Location pinLocation;
+        public Location PinLocation { get; private set; }
 
         public Map()
         {
@@ -38,11 +38,11 @@ namespace Meteo_Desktop
             //Get the mouse click coordinates
             Point mousePosition = e.GetPosition(this);
             //Convert the mouse coordinates to a locatoin on the map
-            pinLocation = myMap.ViewportPointToLocation(mousePosition);
+            PinLocation = myMap.ViewportPointToLocation(mousePosition);
 
             // The pushpin to add to the map.
             Pushpin pin = new Pushpin();
-            pin.Location = pinLocation;
+            pin.Location = PinLocation;
 
             // Deletes other pushpins
             myMap.Children.Clear();
@@ -50,7 +50,7 @@ namespace Meteo_Desktop
             // Adds the pushpin to the map.
             myMap.Children.Add(pin);
 
-            location.Text = pinLocation.ToString();
+            location.Text = PinLocation.ToString();
 
             cmdOk.IsEnabled = true;
         }

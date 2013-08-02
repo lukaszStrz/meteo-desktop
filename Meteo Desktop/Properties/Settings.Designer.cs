@@ -106,5 +106,16 @@ namespace Meteo_Desktop.Properties {
                 this["State"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringDictionary favs {
+            get {
+                return ((global::System.Collections.Specialized.StringDictionary)(this["favs"]));
+            }
+            set {
+                this["favs"] = value;
+            }
+        }
     }
 }

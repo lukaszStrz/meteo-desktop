@@ -1,0 +1,18 @@
+﻿<Window x:Class="Meteo_Desktop.SaveFav"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Zapisz ulubione" Height="100" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="txtKey" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="txtKey_TextChanged"/>
+        <Button x:Name="cmdOk" IsEnabled="False" IsDefault="True" Grid.Column="0" Grid.Row="1" Click="cmdOk_Click">Zapisz</Button>
+        <Button x:Name="cmdCancel" IsCancel="True" Grid.Column="1" Grid.Row="1">Anuluj</Button>
+    </Grid>
+</Window>

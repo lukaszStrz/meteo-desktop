@@ -18,6 +18,7 @@
                 <MenuItem Header="Główne miasta" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=MainCities, Mode=TwoWay}"/>
                 <MenuItem Header="Ulubione" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=Favorites, Mode=TwoWay}"/>
             </MenuItem>
+            <MenuItem x:Name="cmdSave" Header="Zapisz w ulubionych" IsEnabled="False" Click="cmdSave_Click"/>
         </Menu>
         <Grid DockPanel.Dock="Left" Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=MainCities, Mode=OneWay, Converter={StaticResource BoolToVis}}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">

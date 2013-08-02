@@ -109,9 +109,9 @@ namespace Meteo_Desktop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringDictionary favs {
+        public global::Meteo_Desktop.SerializableStringDictionary favs {
             get {
-                return ((global::System.Collections.Specialized.StringDictionary)(this["favs"]));
+                return ((global::Meteo_Desktop.SerializableStringDictionary)(this["favs"]));
             }
             set {
                 this["favs"] = value;

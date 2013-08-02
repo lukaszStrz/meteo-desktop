@@ -45,7 +45,8 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <StackPanel DockPanel.Dock="Right">
+        <StackPanel x:Name="stackFavs" DockPanel.Dock="Right">
+            <ListBox x:Name="listFavs"/>
         </StackPanel>
         <zoom:ZoomControl x:Name="imgZoomControl">
             <Image x:Name="imgMeteo"/>

@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace Meteo_Desktop
@@ -21,6 +22,18 @@ namespace Meteo_Desktop
         public MainWindow()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.favs == null)
+                Properties.Settings.Default.favs = new SerializableStringDictionary();
+            LoadFavs();
+        }
+
+        private void LoadFavs()
+        {
+            listFavs.Items.Clear();
+            foreach (var item in Properties.Settings.Default.favs.Keys)
+            {
+                listFavs.Items.Add(new Fav((string)item, Properties.Settings.Default.favs[(string)item]));
+            }
         }
 
         private void SetImage(MemoryStream ms)
@@ -426,6 +439,7 @@ namespace Meteo_Desktop
                 var img = await meteo.UM(currentCoordinates);
                 SetImage(img);
                 cmdSave.IsEnabled = true;
+                this.Title = "Meteo - " + map.PinLocation.ToString() + " (UM)";
             }
         }
 
@@ -446,7 +460,8 @@ namespace Meteo_Desktop
                 val.Append(';');
                 val.Append(currentCoordinates.EALL);
                 Properties.Settings.Default.favs.Add(save.Key, val.ToString());
-                Properties.Settings.Default.Save();
+                cmdSave.IsEnabled = false;
+                LoadFavs();
             }
         }
     }

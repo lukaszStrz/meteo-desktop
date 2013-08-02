@@ -45,8 +45,9 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <StackPanel x:Name="stackFavs" DockPanel.Dock="Right">
-            <ListBox x:Name="listFavs"/>
+        <StackPanel DockPanel.Dock="Right">
+            <Label>Ulubione</Label>
+            <ListBox x:Name="listFavs" SelectionChanged="listFavs_SelectionChanged"/>
         </StackPanel>
         <zoom:ZoomControl x:Name="imgZoomControl">
             <Image x:Name="imgMeteo"/>

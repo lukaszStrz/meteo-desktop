@@ -464,5 +464,20 @@ namespace Meteo_Desktop
                 LoadFavs();
             }
         }
+
+        private async void listFavs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listFavs.SelectedItem != null)
+            {
+                Loading();
+                var item = (Fav)listFavs.SelectedItem;
+                currentCoordinates = item.Coord;
+                var img = await meteo.UM(currentCoordinates);
+                SetImage(img);
+                cmdSave.IsEnabled = false;
+                this.Title = "Meteo - " + item.Name + " (UM)";
+                Loading();
+            }
+        }
     }
 }

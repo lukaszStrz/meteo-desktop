@@ -28,6 +28,63 @@ namespace Meteo_Desktop
             gridButtons.Background = status.Background;
         }
 
+        private string ParseLatitude(double Value)
+        {
+            var direction = Value < 0 ? "S" : "N";
+
+            Value = Math.Abs(Value);
+
+            var degrees = Math.Truncate(Value);
+
+            Value = (Value - degrees) * 60;
+
+            var minutes = Math.Truncate(Value);
+            var seconds = (Value - minutes) * 60;
+
+            var sb = new StringBuilder();
+            sb.Append(degrees);
+            sb.Append((char)176);
+            sb.Append(minutes);
+            sb.Append(@"'");
+            sb.Append(seconds);
+            sb.Append(@"''");
+            sb.Append(direction);
+            return sb.ToString();
+        }
+
+        private string ParseLongitude(double Value)
+        {
+            var direction = Value < 0 ? "W" : "E";
+
+            Value = Math.Abs(Value);
+
+            var degrees = Math.Truncate(Value);
+
+            Value = (Value - degrees) * 60;
+
+            var minutes = Math.Truncate(Value);
+            var seconds = (Value - minutes) * 60;
+
+            var sb = new StringBuilder();
+            sb.Append(degrees);
+            sb.Append((char)176);
+            sb.Append(minutes);
+            sb.Append(@"'");
+            sb.Append(seconds);
+            sb.Append(@"''");
+            sb.Append(direction);
+            return sb.ToString();
+        }
+
+        private string ParseLocation(Location location)
+        {
+            var sb = new StringBuilder();
+            sb.Append(ParseLatitude(location.Latitude));
+            sb.Append(' ');
+            sb.Append(ParseLongitude(location.Longitude));
+            return sb.ToString();
+        }
+
         private void myMap_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Disables the default mouse double-click action.
@@ -50,7 +107,7 @@ namespace Meteo_Desktop
             // Adds the pushpin to the map.
             myMap.Children.Add(pin);
 
-            location.Text = PinLocation.ToString();
+            location.Text = ParseLocation(PinLocation);
 
             cmdOk.IsEnabled = true;
         }

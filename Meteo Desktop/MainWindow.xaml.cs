@@ -1,5 +1,10 @@
-﻿using System.IO;
+﻿using Meteo_Lib;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -11,36 +16,68 @@ namespace Meteo_Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        Meteo_Lib.Meteo meteo = new Meteo_Lib.Meteo();
+        Location currentLocation;
+        Model currentModel = Model.UM;
+        City currentCity;
+        Source currentSource;
 
-        Meteo_Lib.Coordinates currentCoordinates;
+        Dictionary<City, string> titles = new Dictionary<City, string>();
 
         public MainWindow()
         {
             InitializeComponent();
-            if (Properties.Settings.Default.favs == null)
-                Properties.Settings.Default.favs = new SerializableStringDictionary();
-            LoadFavs();
+
+            titles.Add(City.BIALYSTOK, "Białystok");
+            titles.Add(City.BYDGOSZCZ, "Bydgoszcz");
+            titles.Add(City.GDANSK, "Gdańsk");
+            titles.Add(City.GORZOW_WIELKOPOLSKI, "Gorzów Wielkopolski");
+            titles.Add(City.KATOWICE, "Katowice");
+            titles.Add(City.KIELCE, "Kielce");
+            titles.Add(City.KRAKOW, "Kraków");
+            titles.Add(City.LODZ, "Łódź");
+            titles.Add(City.LUBLIN, "Lublin");
+            titles.Add(City.OLSZTYN, "Olsztyn");
+            titles.Add(City.OPOLE, "Opole");
+            titles.Add(City.POZNAN, "Poznań");
+            titles.Add(City.RZESZOW, "Rzeszów");
+            titles.Add(City.SZCZECIN, "Szczecin");
+            titles.Add(City.TORUN, "Toruń");
+            titles.Add(City.WARSZAWA, "Warszawa");
+            titles.Add(City.WROCLAW, "Wrocław");
+            titles.Add(City.ZIELONA_GORA, "Zielona Góra");
         }
 
-        private void LoadFavs()
-        {
-            Loading(true);
-            listFavs.Items.Clear();
-            foreach (var item in Properties.Settings.Default.favs.Keys)
-            {
-                listFavs.Items.Add(new Fav((string)item, Properties.Settings.Default.favs[(string)item]));
-            }
-            Loading(false);
-        }
-
-        private void SetImage(MemoryStream ms)
+        private void SetImage(MemoryStream ms, string title)
         {
             var imageSource = new BitmapImage();
             imageSource.BeginInit();
             imageSource.StreamSource = ms;
             imageSource.EndInit();
             imgMeteo.Source = imageSource;
+            cmdSwitch.IsEnabled = true;
+            this.Title = "Meteo - " + title;
+        }
+
+        private async Task SetCity(City city, Model model)
+        {
+            Loading(true);
+            try
+            {
+                var stream = await Meteo.MainCity(city, model);
+                SetImage(stream, titles[city]);
+                cmdSave.IsEnabled = false;
+                currentCity = city;
+                currentModel = model;
+                currentSource = Source.MAIN_CITY;
+            }
+            catch
+            {
+                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                Loading(false);
+            }
         }
 
         private void Loading(bool loading)
@@ -59,362 +96,92 @@ namespace Meteo_Desktop
 
         private async void meteoBialystok_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.BialystokUM();
-                SetImage(stream);
-                this.Title = "Meteo - Białystok (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.BIALYSTOK, currentModel);
         }
 
         private async void meteoBydgoszcz_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.BydgoszczUM();
-                SetImage(stream);
-                this.Title = "Meteo - Bydgoszcz (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.BYDGOSZCZ, currentModel);
         }
 
         private async void meteoGdansk_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.GdanskUM();
-                SetImage(stream);
-                this.Title = "Meteo - Gdańsk (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.GDANSK, currentModel);
         }
 
         private async void meteoGorzow_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.GorzowUM();
-                SetImage(stream);
-                this.Title = "Meteo - Gorzów Wielkopolski (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.GORZOW_WIELKOPOLSKI, currentModel);
         }
 
         private async void meteoKatowice_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.KatowiceUM();
-                SetImage(stream);
-                this.Title = "Meteo - Katowice (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.KATOWICE, currentModel);
         }
 
         private async void meteoKielce_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.KielceUM();
-                SetImage(stream);
-                this.Title = "Meteo - Kielce (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.KIELCE, currentModel);
         }
 
         private async void meteoKrakow_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.KrakowUM();
-                SetImage(stream);
-                this.Title = "Meteo - Kraków (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.KRAKOW, currentModel);
         }
 
         private async void meteoLublin_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.LublinUM();
-                SetImage(stream);
-                this.Title = "Meteo - Lublin (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.LUBLIN, currentModel);
         }
 
         private async void meteoLodz_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.LodzUM();
-                SetImage(stream);
-                this.Title = "Meteo - Łódź (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.LODZ, currentModel);
         }
 
         private async void meteoOlsztyn_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.OlsztynUM();
-                SetImage(stream);
-                this.Title = "Meteo - Olsztyn (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.OLSZTYN, currentModel);
         }
 
         private async void meteoOpole_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.OpoleUM();
-                SetImage(stream);
-                this.Title = "Meteo - Opole (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.OPOLE, currentModel);
         }
 
         private async void meteoPoznan_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.PoznanUM();
-                SetImage(stream);
-                this.Title = "Meteo - Poznań (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.POZNAN, currentModel);
         }
 
         private async void meteoRzeszow_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.RzeszowUM();
-                SetImage(stream);
-                this.Title = "Meteo - Rzeszów (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.RZESZOW, currentModel);
         }
 
         private async void meteoSzczecin_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.SzczecinUM();
-                SetImage(stream);
-                this.Title = "Meteo - Szczecin (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.SZCZECIN, currentModel);
         }
 
         private async void meteoTorun_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.TorunUM();
-                SetImage(stream);
-                this.Title = "Meteo - Toruń (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.TORUN, currentModel);
         }
 
         private async void meteoWarszawa_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.WarszawaUM();
-                SetImage(stream);
-                this.Title = "Meteo - Warszawa (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.WARSZAWA, currentModel);
         }
 
         private async void meteoWroclaw_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.WroclawUM();
-                SetImage(stream);
-                this.Title = "Meteo - Wrocław (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.WROCLAW, currentModel);
         }
 
         private async void meteoZielonaGora_Click(object sender, RoutedEventArgs e)
         {
-            Loading(true);
-            try
-            {
-                var stream = await meteo.ZielonaGoraUM();
-                SetImage(stream);
-                this.Title = "Meteo - Zielona Góra (UM)";
-                cmdSave.IsEnabled = false;
-            }
-            catch
-            {
-                MessageBox.Show(this, "Sprawdź połączenie z siecią", "Błąd pobierania", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                Loading(false);
-            }
+            await SetCity(City.ZIELONA_GORA, currentModel);
         }
 
         #endregion
@@ -431,11 +198,13 @@ namespace Meteo_Desktop
             var result = map.ShowDialog();
             if (result != null && result == true)
             {
-                currentCoordinates = new Meteo_Lib.Coordinates(map.PinLocation.Latitude, map.PinLocation.Longitude);
-                var img = await meteo.UM(currentCoordinates);
-                SetImage(img);
+                Loading(true);
+                currentLocation = Meteo.GetLocation(new Coordinates(map.PinLocation.Latitude, map.PinLocation.Longitude));
+                currentSource = Source.MAP;
+                var img = await currentLocation.Get(currentModel);
+                SetImage(img, currentLocation.ToString() + " (" + currentModel.ToString() + ")");
                 cmdSave.IsEnabled = true;
-                this.Title = "Meteo - " + map.PinLocation.ToString() + " (UM)";
+                Loading(false);
             }
         }
 
@@ -446,33 +215,72 @@ namespace Meteo_Desktop
             var result = save.ShowDialog();
             if (result != null && result == true)
             {
-                if (Properties.Settings.Default.favs.ContainsKey(save.Key))
-                {
-                    MessageBox.Show(this, "Podana nazwa już znajduje się w ulubionych", "Błąd", MessageBoxButton.OK, MessageBoxImage.Stop);
-                    return;
-                }
-                StringBuilder val = new StringBuilder();
-                val.Append(currentCoordinates.NALL);
-                val.Append(';');
-                val.Append(currentCoordinates.EALL);
-                Properties.Settings.Default.favs.Add(save.Key, val.ToString());
-                cmdSave.IsEnabled = false;
-                LoadFavs();
+                //TODO
             }
         }
 
-        private async void listFavs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listFavs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (listFavs.SelectedItem != null)
             {
                 Loading(true);
-                var item = (Fav)listFavs.SelectedItem;
-                currentCoordinates = item.Coord;
-                var img = await meteo.UM(currentCoordinates);
-                SetImage(img);
-                cmdSave.IsEnabled = false;
-                this.Title = "Meteo - " + item.Name + " (UM)";
+
                 Loading(false);
+            }
+        }
+
+        private async void cmdSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            switch (currentSource)
+            {
+                case Source.FAV:
+                    break;
+                case Source.MAP:
+                    switch (currentModel)
+                    {
+                        case Model.COAMPS:
+                            {
+                                currentModel = Model.UM;
+                                Loading(true);
+                                var img = await currentLocation.Get(Model.UM);
+                                Loading(false);
+                                SetImage(img, currentLocation.ToString() + " (" + currentModel.ToString() + ")");
+                                break;
+                            }
+                        case Model.UM:
+                            {
+                                currentModel = Model.COAMPS;
+                                Loading(true);
+                                var img = await currentLocation.Get(Model.COAMPS);
+                                Loading(false);
+                                SetImage(img, currentLocation.ToString() + " (" + currentModel.ToString() + ")");
+                                break;
+                            }
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    break;
+                case Source.MAIN_CITY:
+                    switch (currentModel)
+                    {
+                        case Model.COAMPS:
+                            {
+                                currentModel = Model.UM;
+                                await SetCity(currentCity, Model.UM);
+                                break;
+                            }
+                        case Model.UM:
+                            {
+                                currentModel = Model.COAMPS;
+                                await SetCity(currentCity, Model.COAMPS);
+                                break;
+                            }
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
         }
     }

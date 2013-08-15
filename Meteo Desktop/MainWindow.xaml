@@ -19,36 +19,49 @@
                 <MenuItem Header="Ulubione" IsCheckable="True" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=Favorites, Mode=TwoWay}"/>
             </MenuItem>
             <MenuItem x:Name="cmdSave" Header="Zapisz w ulubionych" IsEnabled="False" Click="cmdSave_Click"/>
+            <MenuItem x:Name="cmdSwitch" Header="Przełącz UM/COAMPS" IsEnabled="False" Click="cmdSwitch_Click"/>
         </Menu>
         <Grid DockPanel.Dock="Left" Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=MainCities, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <Label>Główne miasta</Label>
-                    <Button x:Name="meteoBialystok" Click="meteoBialystok_Click">Białystok</Button>
-                    <Button x:Name="meteoBydgoszcz" Click="meteoBydgoszcz_Click">Bydgoszcz</Button>
-                    <Button x:Name="meteoGdansk" Click="meteoGdansk_Click">Gdańsk</Button>
-                    <Button x:Name="meteoGorzow" Click="meteoGorzow_Click">Gorzów Wlkp</Button>
-                    <Button x:Name="meteoKatowice" Click="meteoKatowice_Click">Katowice</Button>
-                    <Button x:Name="meteoKielce" Click="meteoKielce_Click">Kielce</Button>
-                    <Button x:Name="meteoKrakow" Click="meteoKrakow_Click">Kraków</Button>
-                    <Button x:Name="meteoLublin" Click="meteoLublin_Click">Lublin</Button>
-                    <Button x:Name="meteoLodz" Click="meteoLodz_Click">Łódź</Button>
-                    <Button x:Name="meteoOlsztyn" Click="meteoOlsztyn_Click">Olsztyn</Button>
-                    <Button x:Name="meteoOpole" Content="Opole" Click="meteoOpole_Click"/>
-                    <Button x:Name="meteoPoznan" Click="meteoPoznan_Click">Poznań</Button>
-                    <Button x:Name="meteoRzeszow" Click="meteoRzeszow_Click">Rzeszów</Button>
-                    <Button x:Name="meteoSzczecin" Click="meteoSzczecin_Click">Szczecin</Button>
-                    <Button x:Name="meteoTorun" Click="meteoTorun_Click">Toruń</Button>
-                    <Button x:Name="meteoWarszawa" Click="meteoWarszawa_Click">Warszawa</Button>
-                    <Button x:Name="meteoWroclaw" Click="meteoWroclaw_Click">Wrocław</Button>
-                    <Button x:Name="meteoZielonaGora" Click="meteoZielonaGora_Click">Zielona Góra</Button>
-                </StackPanel>
-            </ScrollViewer>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="meteoBialystok" Click="meteoBialystok_Click" Grid.Row="0">Białystok</Button>
+            <Button x:Name="meteoBydgoszcz" Click="meteoBydgoszcz_Click" Grid.Row="1">Bydgoszcz</Button>
+            <Button x:Name="meteoGdansk" Click="meteoGdansk_Click" Grid.Row="2">Gdańsk</Button>
+            <Button x:Name="meteoGorzow" Click="meteoGorzow_Click" Grid.Row="3">Gorzów Wlkp</Button>
+            <Button x:Name="meteoKatowice" Click="meteoKatowice_Click" Grid.Row="4">Katowice</Button>
+            <Button x:Name="meteoKielce" Click="meteoKielce_Click" Grid.Row="5">Kielce</Button>
+            <Button x:Name="meteoKrakow" Click="meteoKrakow_Click" Grid.Row="6">Kraków</Button>
+            <Button x:Name="meteoLublin" Click="meteoLublin_Click" Grid.Row="7">Lublin</Button>
+            <Button x:Name="meteoLodz" Click="meteoLodz_Click" Grid.Row="8">Łódź</Button>
+            <Button x:Name="meteoOlsztyn" Click="meteoOlsztyn_Click" Grid.Row="9">Olsztyn</Button>
+            <Button x:Name="meteoOpole" Click="meteoOpole_Click" Grid.Row="10">Opole</Button>
+            <Button x:Name="meteoPoznan" Click="meteoPoznan_Click" Grid.Row="11">Poznań</Button>
+            <Button x:Name="meteoRzeszow" Click="meteoRzeszow_Click" Grid.Row="12">Rzeszów</Button>
+            <Button x:Name="meteoSzczecin" Click="meteoSzczecin_Click" Grid.Row="13">Szczecin</Button>
+            <Button x:Name="meteoTorun" Click="meteoTorun_Click" Grid.Row="14">Toruń</Button>
+            <Button x:Name="meteoWarszawa" Click="meteoWarszawa_Click" Grid.Row="15">Warszawa</Button>
+            <Button x:Name="meteoWroclaw" Click="meteoWroclaw_Click" Grid.Row="16">Wrocław</Button>
+            <Button x:Name="meteoZielonaGora" Click="meteoZielonaGora_Click" Grid.Row="17">Zielona Góra</Button>
         </Grid>
-        <StackPanel DockPanel.Dock="Right">
-            <Label>Ulubione</Label>
-            <ListBox x:Name="listFavs" SelectionChanged="listFavs_SelectionChanged"/>
-        </StackPanel>
+        <ListBox x:Name="listFavs" DockPanel.Dock="Right" SelectionChanged="listFavs_SelectionChanged"/>
         <zoom:ZoomControl x:Name="imgZoomControl">
             <Image x:Name="imgMeteo"/>
         </zoom:ZoomControl>

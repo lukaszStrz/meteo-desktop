@@ -67,7 +67,7 @@
     <Compile Include="SaveFav.xaml.cs">
       <DependentUpon>SaveFav.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SerializableStringDictionary.cs" />
+    <Compile Include="Source.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -293,5 +293,10 @@ namespace Meteo_Desktop
                     throw new NotImplementedException();
             }
         }
+
+        private void cmdAbout_Click(object sender, RoutedEventArgs e)
+        {
+            (new AboutBox1()).ShowDialog();
+        }
     }
 }

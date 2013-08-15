@@ -20,6 +20,7 @@
             </MenuItem>
             <MenuItem x:Name="cmdSave" Header="Zapisz w ulubionych" Visibility="Hidden" IsEnabled="False" Click="cmdSave_Click"/>
             <MenuItem x:Name="cmdSwitch" Header="Przełącz UM/COAMPS" Visibility="Hidden" IsEnabled="False" Click="cmdSwitch_Click"/>
+            <MenuItem x:Name="cmdAbout" Header="O programie" Click="cmdAbout_Click"/>
         </Menu>
         <Grid DockPanel.Dock="Left" Visibility="{Binding Source={x:Static properties:Settings.Default}, Path=MainCities, Mode=OneWay, Converter={StaticResource BoolToVis}}">
             <Grid.RowDefinitions>

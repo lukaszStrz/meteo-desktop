@@ -198,13 +198,23 @@ namespace Meteo_Desktop
             var result = map.ShowDialog();
             if (result != null && result == true)
             {
-                Loading(true);
-                currentLocation = Meteo.GetLocation(new Coordinates(map.PinLocation.Latitude, map.PinLocation.Longitude));
                 currentSource = Source.MAP;
-                var img = await currentLocation.Get(currentModel);
-                SetImage(img, currentLocation.ToString() + " (" + currentModel.ToString() + ")");
-                cmdSave.IsEnabled = true;
-                Loading(false);
+                Loading(true);
+                try
+                {
+                    currentLocation = Meteo.GetLocation(new Coordinates(map.PinLocation.Latitude, map.PinLocation.Longitude));
+                    var img = await currentLocation.Get(currentModel);
+                    SetImage(img, currentLocation.ToString() + " (" + currentModel.ToString() + ")");
+                    cmdSave.IsEnabled = true;
+                }
+                catch (Meteo_Lib.ResolveException)
+                {
+                    MessageBox.Show(this, "Podana pozycja nie mieści się w obszarze danego modelu", "Błąd", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                finally
+                {
+                    Loading(false);
+                }
             }
         }
 
